@@ -1,0 +1,27 @@
+he Service Container is a powerful tool responsible for
+ managing class dependencies and performing dependency injection
+like
+interface PaymentGateway {
+    public function process();
+}
+
+class CreditCardPaymentGateway implements PaymentGateway {
+    public function process() {
+        // Process credit card payment
+    }
+}
+
+class PaymentProcessor {
+    protected $gateway;
+
+    public function __construct(PaymentGateway $gateway) {
+        $this->gateway = $gateway;
+    }
+
+    public function purchase() {
+        $this->gateway->process();
+    }
+}
+Here, the PaymentProcessor class depends on a PaymentGateway interface. Laravel's Service Container can automatically resolve the dependency by binding the interface to its concrete implementation.
+
+The Service Container allows you to bind this implementation to the interface like so:

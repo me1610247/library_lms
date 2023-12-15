@@ -1,0 +1,34 @@
+ Eloquent is the default ORM (Object-Relational Mapping) included with the framework, providing an easy and expressive way to interact with the database
+. It simplifies database operations by allowing you to work with database tables as if they were regular PHP objects.
+like this 
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
+{
+    protected $table = 'users'; // Explicitly set table name if different from convention
+    protected $primaryKey = 'id'; // Explicitly set primary key if different from convention
+    protected $fillable = ['name', 'email', 'password']; // Fields that can be mass-assigned
+
+    // Define relationships
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+}
+// Retrieve a user by ID
+$user = User::find(1);
+
+// Create a new user
+$newUser = User::create([
+    'name' => 'John Doe',
+    'email' => 'john@example.com',
+    'password' => bcrypt('password'),
+]);
+
+// Update a user
+$user->update(['name' => 'Updated Name']);
+
+// Delete a user
+$user->delete();

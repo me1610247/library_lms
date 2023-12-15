@@ -1,0 +1,10 @@
+ validations refer to the process of validating incoming data
+, typically from user input, to ensure it meets certain criteria
+ or rules before using it in the application. Laravel provides a convenient
+ and expressive way to handle data validation through its built-in validation features.
+like
+$validatedData = $request->validate([
+    'name' => 'required|string|max:255',
+    'email' => 'required|email|unique:users|max:255',
+    'password' => 'required|string|min:8|confirmed',
+]);
